@@ -1,7 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.step-indicator {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.step-indicator .step {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 50%;
+  background-color: #ddd;
+  color: #666;
+  margin: 0 6px;
+  font-weight: bold;
+}
+
+.step-indicator .step.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.step-section {
+  margin-bottom: 1rem;
+}
+
 .hidden {
   display: none;
 }
 
-.step {
-  margin-bottom: 2rem;
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.plan-summary {
+  background: #efefef;
+  padding: 1rem;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.size-section {
+  margin: 1rem 0;
+}
+
+.quilt-visual {
+  margin-top: 1rem;
+  display: grid;
+  gap: 2px;
+  justify-content: center;
+}
+
+.quilt-block {
+  width: 30px;
+  height: 30px;
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.border-strip {
+  background-color: #444;
+}
+
+button {
+  margin: 10px 5px 0 0;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="number"] {
+  margin-left: 10px;
+  width: 80px;
+  padding: 4px;
+  font-size: 1rem;
 }
