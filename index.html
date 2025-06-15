@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quilt Block Planner</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uswds@3.6.0/dist/css/uswds.min.css"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="usa-section">
+    <div class="usa-grid">
+      <h1 class="usa-heading-xl">Quilt block planner</h1>
+      <p class="usa-intro">Calculate how many blocks you need for a quilt with square blocks. Questions with an asterisk (*) are required.</p>
+      
+      <form id="quilt-form">
+        <!-- Step 1: Purpose -->
+        <div class="step" id="step-1">
+          <fieldset class="usa-fieldset">
+            <legend class="usa-legend">How will you use the quilt? <abbr title="required">*</abbr></legend>
+            <div class="usa-radio__inline">
+              <input class="usa-radio__input" id="bed-cover" type="radio" name="purpose" value="bed" required />
+              <label class="usa-radio__label" for="bed-cover">Bed cover</label>
+
+              <input class="usa-radio__input" id="throw-blanket" type="radio" name="purpose" value="throw" />
+              <label class="usa-radio__label" for="throw-blanket">Throw blanket</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 2: Size -->
+        <div class="step hidden" id="step-2">
+          <!-- Bed Options -->
+          <div id="bed-options" class="hidden">
+            <fieldset class="usa-fieldset">
+              <legend>Bed size* </legend>
+              <div class="usa-radio__inline">
+                <label class="usa-radio__label"><input type="radio" name="bed-size" value="Twin"> Twin (X x X")</label>
+                <label class="usa-radio__label"><input type="radio" name="bed-size" value="Full"> Full (X x X")</label>
+                <label class="usa-radio__label"><input type="radio" name="bed-size" value="Queen"> Queen (X x X")</label>
+                <label class="usa-radio__label"><input type="radio" name="bed-size" value="King"> King (X x X")</label>
+              </div>
+              <span class="usa-error-message" id="bed-size-error"></span>
+            </fieldset>
+
+            <label class="usa-label" for="overhang">Overhang*</label>
+            <span class="usa-hint">How much do you want the quilt to hang over the sides of the bed (in inches)?</span>
+            <select id="overhang" name="overhang" class="usa-select" required>
+              <option value="">None</option>
+              <option>6"</option><option>8"</option><option>10"</option><option>12"</option>
+              <option>14"</option><option>16"</option><option>18"</option><option>20"</option><option>22"</option>
+            </select>
+          </div>
+
+          <!-- Throw Options -->
+          <div
