@@ -159,7 +159,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form submission: validate Step 3 and show result
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    
+    // Existing code: get inputs and create plan object
+      const width = document.getElementById("quilt-width").value;
+      const height = document.getElementById("quilt-height").value;
+      const colorInput = document.querySelector('input[name="color"]:checked');
+      const color = colorInput ? colorInput.value : "N/A";
+      const blockType = document.getElementById("block-type").value;
 
+    // Build user responses summary
+    const userResponseSummary = `
+      <p><strong>Your Quilt Size:</strong> ${width} x ${height} inches</p>
+      <p><strong>Color Scheme:</strong> ${color}</p>
+      <p><strong>Block Type:</strong> ${blockType}</p>
+    `;
+
+    // Update the summary element
+    const planSummary = document.getElementById("plan-summary");
+    planSummary.innerHTML = userResponseSummary;
+    
     // Validate Step 3
     let valid = true;
     const blockSizeRadio = Array.from(form.elements["block-size"]).find(r => r.checked);
