@@ -53,4 +53,78 @@
           </div>
 
           <!-- Throw Options -->
-          <div
+          <div id="throw-options" class="hidden">
+            <fieldset class="usa-fieldset">
+              <legend>Throw blanket size* </legend>
+              <div class="usa-radio__inline">
+                <label class="usa-radio__label"><input type="radio" name="throw-size" value="Small"> Small (X x X")</label>
+                <label class="usa-radio__label"><input type="radio" name="throw-size" value="Standard"> Standard (X x X")</label>
+                <label class="usa-radio__label"><input type="radio" name="throw-size" value="Oversized"> Oversized (X x X")</label>
+              </div>
+              <span class="usa-error-message" id="throw-size-error"></span>
+            </fieldset>
+          </div>
+
+          <div class="usa-button-group">
+            <button type="button" class="usa-button usa-button--outline" id="back-step-1">Back to purpose</button>
+            <button type="button" class="usa-button" id="next-step-2">Save & continue to design</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Design -->
+        <div class="step hidden" id="step-3">
+          <fieldset class="usa-fieldset">
+            <legend>Finished quilt block size* </legend>
+            <span class="usa-hint">How big will each quilt block be in the finished quilt (square block in inches)?</span>
+            <label><input type="radio" name="block-size" value="6"> 6”</label>
+            <label><input type="radio" name="block-size" value="8"> 8”</label>
+            <label><input type="radio" name="block-size" value="9"> 9”</label>
+            <label><input type="radio" name="block-size" value="10"> 10”</label>
+            <label><input type="radio" name="block-size" value="12"> 12”</label>
+            <label><input type="radio" name="block-size" value="custom"> Custom</label>
+          </fieldset>
+
+          <div id="custom-block-wrapper" class="hidden">
+            <label class="usa-label" for="custom-block-size">Custom block size (1-100 inch square)*</label>
+            <input type="number" class="usa-input usa-input--small" id="custom-block-size" name="custom-block-size" min="1" max="100" />
+          </div>
+
+          <label class="usa-label" for="sashing">Sashing*</label>
+          <span class="usa-hint">Will there be fabric between each of the blocks?</span>
+          <select id="sashing" name="sashing" class="usa-select">
+            <option value="">None</option>
+            <option>.5”</option><option>1”</option><option>1.5”</option><option>2”</option><option>2.5”</option>
+            <option>3”</option><option>3.5”</option><option>4”</option><option>4.5”</option><option>5”</option>
+          </select>
+
+          <label class="usa-label" for="border">Border*</label>
+          <span class="usa-hint">Will there be fabric around the quilt, framing the blocks?</span>
+          <select id="border" name="border" class="usa-select">
+            <option value="">None</option>
+            <option>.5”</option><option>1”</option><option>1.5”</option><option>2”</option><option>2.5”</option>
+            <option>3”</option><option>3.5”</option><option>4”</option><option>4.5”</option><option>5”</option>
+          </select>
+
+          <div class="usa-button-group">
+            <button type="button" class="usa-button usa-button--outline" id="back-step-2">Back</button>
+            <button type="submit" class="usa-button">Create quilt plan</button>
+          </div>
+        </div>
+
+        <!-- Quilt Plan Result -->
+        <div class="hidden" id="quilt-result">
+          <h2 class="usa-heading-lg">Your quilt plan</h2>
+          <p id="quilt-summary-text"></p>
+          <pre id="quilt-plan-text"></pre>
+          <div class="usa-button-group">
+            <button type="button" class="usa-button usa-button--outline" id="edit-button">Edit</button>
+            <button type="button" class="usa-button" id="copy-button">Copy quilt plan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
