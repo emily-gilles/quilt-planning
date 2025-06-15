@@ -86,3 +86,9 @@ canvas {
   height: auto;
   display: block;
 }
+
+.icon-white {
+  color: white;
+  vertical-align: middle;
+}
+
