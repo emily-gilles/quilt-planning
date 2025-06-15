@@ -3,134 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quilt Planner</title>
+  <title>Quilt block planner</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uswds@3.4.5/dist/css/uswds.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Quilt Planner</h1>
+  <main class="usa-prose usa-prose--indented usa-layout--margin-top" style="max-width:600px; margin: auto;">
 
-    <div id="stepIndicator" class="step-indicator">
-      <span class="step active">1</span>
-      <span class="step">2</span>
-      <span class="step">3</span>
-      <span class="step">4</span>
-    </div>
+    <h1>Quilt block planner</h1>
+    <p>Calculate how many blocks you need for a quilt with square blocks. Questions with an asterisk (*) are required.</p>
 
-    <form id="quiltForm">
+    <nav aria-label="Progress" class="usa-step-indicator">
+      <ol class="usa-step-indicator__segments">
+        <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+          <a href="#" class="usa-step-indicator__segment-label">Purpose</a>
+        </li>
+        <li class="usa-step-indicator__segment">
+          <a href="#" class="usa-step-indicator__segment-label">Size</a>
+        </li>
+        <li class="usa-step-indicator__segment">
+          <a href="#" class="usa-step-indicator__segment-label">Design</a>
+        </li>
+      </ol>
+    </nav>
+
+    <form id="quilt-form" novalidate>
 
       <!-- Step 1: Purpose -->
-      <section class="step-section" data-step="0">
-        <h2>Step 1: Choose Quilt Purpose</h2>
-        <label><input type="radio" name="purpose" value="bed" /> Bed Cover</label><br />
-        <label><input type="radio" name="purpose" value="throw" /> Throw Blanket</label><br />
-        <div id="purposeError" class="error hidden">Please select a purpose.</div>
-        <button type="button" id="toSizeBtn">Next</button>
-      </section>
+      <fieldset id="step-1" class="step" aria-label="Step 1: Purpose">
+        <legend>How will you use the quilt?*</legend>
+        <div class="usa-radio usa-radio--inline">
+          <input class="usa-radio__input" id="use-bed" type="radio" name="quiltUse" value="bed" required />
+          <label class="usa-radio__label" for="use-bed">
+            <img src="https://via.placeholder.com/80x60?text=Bed+Cover" alt="Bed cover" style="display:block; margin-bottom:4px;" />
+            Bed cover
+          </label>
+        </div>
+        <div class="usa-radio usa-radio--inline">
+          <input class="usa-radio__input" id="use-throw" type="radio" name="quiltUse" value="throw" />
+          <label class="usa-radio__label" for="use-throw">
+            <img src="https://via.placeholder.com/80x60?text=Throw+Blanket" alt="Throw blanket" style="display:block; margin-bottom:4px;" />
+            Throw blanket
+          </label>
+        </div>
+      </fieldset>
 
       <!-- Step 2: Size -->
-      <section class="step-section hidden" data-step="1">
-        <h2>Step 2: Select Size</h2>
-
-        <!-- Bed size options -->
-        <div id="bedSizeSection" class="size-section hidden">
-          <label for="bedSize">Choose Bed Size:</label>
-          <select name="bedSize" id="bedSize">
-            <option value="">--Select Bed Size--</option>
-            <option value="twin">Twin (68" × 86")</option>
-            <option value="full">Full (84" × 90")</option>
-            <option value="queen">Queen (90" × 96")</option>
-            <option value="king">King (106" × 96")</option>
-          </select>
-          <div id="bedSizeError" class="error hidden">Please select a bed size.</div>
-
-          <label for="overhang">Overhang (inches):</label>
-          <select id="overhang" name="overhang">
-            <option value="">--Select Overhang--</option>
-            <option value="6">6"</option>
-            <option value="8">8"</option>
-            <option value="10">10"</option>
-            <option value="12">12"</option>
-          </select>
-          <div id="overhangError" class="error hidden">Please select an overhang.</div>
+      <fieldset id="step-2" class="step" aria-label="Step 2: Size" hidden>
+        <!-- Bed size (only if bed cover) -->
+        <div id="bed-size-group" hidden>
+          <legend>Bed size*</legend>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-crib" type="radio" name="bedSize" value="Crib" />
+            <label class="usa-radio__label" for="bed-crib">
+              <img src="https://via.placeholder.com/80x60?text=Crib" alt="Crib" style="display:block; margin-bottom:4px;" />
+              Crib (28” x 52”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-twin" type="radio" name="bedSize" value="Twin" />
+            <label class="usa-radio__label" for="bed-twin">
+              <img src="https://via.placeholder.com/80x60?text=Twin" alt="Twin" style="display:block; margin-bottom:4px;" />
+              Twin (39” x 75”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-twin-xl" type="radio" name="bedSize" value="Twin XL" />
+            <label class="usa-radio__label" for="bed-twin-xl">
+              <img src="https://via.placeholder.com/80x60?text=Twin+XL" alt="Twin XL" style="display:block; margin-bottom:4px;" />
+              Twin XL (39” x 80”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-full" type="radio" name="bedSize" value="Full" />
+            <label class="usa-radio__label" for="bed-full">
+              <img src="https://via.placeholder.com/80x60?text=Full" alt="Full" style="display:block; margin-bottom:4px;" />
+              Full (54” x 75”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-queen" type="radio" name="bedSize" value="Queen" />
+            <label class="usa-radio__label" for="bed-queen">
+              <img src="https://via.placeholder.com/80x60?text=Queen" alt="Queen" style="display:block; margin-bottom:4px;" />
+              Queen (60” x 80”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-king" type="radio" name="bedSize" value="King" />
+            <label class="usa-radio__label" for="bed-king">
+              <img src="https://via.placeholder.com/80x60?text=King" alt="King" style="display:block; margin-bottom:4px;" />
+              King (76” x 80”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="bed-ca-king" type="radio" name="bedSize" value="California King" />
+            <label class="usa-radio__label" for="bed-ca-king">
+              <img src="https://via.placeholder.com/80x60?text=CA+King" alt="California King" style="display:block; margin-bottom:4px;" />
+              California King (72” x 84”)
+            </label>
+          </div>
+          <span class="usa-error-message" id="bedSizeError" hidden>You must select a bed size.</span>
         </div>
 
-        <!-- Throw size options -->
-        <div id="throwSizeSection" class="size-section hidden">
-          <label for="throwSize">Choose Throw Size:</label>
-          <select name="throwSize" id="throwSize">
-            <option value="">--Select Throw Size--</option>
-            <option value="small">Small (50" × 65")</option>
-            <option value="medium">Medium (60" × 70")</option>
-            <option value="large">Large (70" × 80")</option>
+        <!-- Overhang (only if bed cover) -->
+        <div id="overhang-group" hidden>
+          <label for="overhang">Overhang*</label>
+          <span class="usa-hint">How much do you want the quilt to hang over the sides of the bed (in inches)?</span>
+          <select class="usa-select" id="overhang" name="overhang">
+            <option value="">None</option>
+            <option value="6">6”</option>
+            <option value="8">8”</option>
+            <option value="10">10”</option>
+            <option value="12">12”</option>
+            <option value="14">14”</option>
+            <option value="16">16”</option>
+            <option value="18">18”</option>
+            <option value="20">20”</option>
+            <option value="22">22”</option>
           </select>
-          <div id="throwSizeError" class="error hidden">Please select a throw size.</div>
+          <span class="usa-error-message" id="overhangError" hidden>You must select overhang size.</span>
         </div>
 
-        <button type="button" id="backToPurposeBtn">Back</button>
-        <button type="button" id="toDesignBtn">Next</button>
-      </section>
+        <!-- Throw blanket size (only if throw blanket) -->
+        <div id="throw-size-group" hidden>
+          <legend>Throw blanket size*</legend>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="throw-small" type="radio" name="throwSize" value="Small" />
+            <label class="usa-radio__label" for="throw-small">
+              <img src="https://via.placeholder.com/80x60?text=Small" alt="Small" style="display:block; margin-bottom:4px;" />
+              Small (36” x 48”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="throw-standard" type="radio" name="throwSize" value="Standard" />
+            <label class="usa-radio__label" for="throw-standard">
+              <img src="https://via.placeholder.com/80x60?text=Standard" alt="Standard" style="display:block; margin-bottom:4px;" />
+              Standard (50” x 60”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="throw-large" type="radio" name="throwSize" value="Large" />
+            <label class="usa-radio__label" for="throw-large">
+              <img src="https://via.placeholder.com/80x60?text=Large" alt="Large" style="display:block; margin-bottom:4px;" />
+              Large (60” x 80”)
+            </label>
+          </div>
+          <div class="usa-radio usa-radio--inline">
+            <input class="usa-radio__input" id="throw-oversized" type="radio" name="throwSize" value="Oversized" />
+            <label class="usa-radio__label" for="throw-oversized">
+              <img src="https://via.placeholder.com/80x60?text=Oversized" alt="Oversized" style="display:block; margin-bottom:4px;" />
+              Oversized (72” x 90”)
+            </label>
+          </div>
+          <span class="usa-error-message" id="throwSizeError" hidden>You must select throw blanket size.</span>
+        </div>
+
+        <button type="button" class="usa-button usa-button--unstyled" id="backToPurpose">Back to purpose</button>
+        <button type="button" class="usa-button" id="saveAndContinueToDesign">Save &amp; continue to design</button>
+      </fieldset>
 
       <!-- Step 3: Design -->
-      <section class="step-section hidden" data-step="2">
-        <h2>Step 3: Design Your Quilt</h2>
+      <fieldset id="step-3" class="step" aria-label="Step 3: Design" hidden>
+        <legend>Finished quilt block size*</legend>
+        <span class="usa-hint">How big will each quilt block be in the finished quilt (square block in inches)?</span>
+        <div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-6" name="blockSize" value="6" />
+            <label class="usa-radio__label" for="block-6">6”</label>
+          </div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-8" name="blockSize" value="8" />
+            <label class="usa-radio__label" for="block-8">8”</label>
+          </div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-9" name="blockSize" value="9" />
+            <label class="usa-radio__label" for="block-9">9”</label>
+          </div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-10" name="blockSize" value="10" />
+            <label class="usa-radio__label" for="block-10">10”</label>
+          </div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-12" name="blockSize" value="12" />
+            <label class="usa-radio__label" for="block-12">12”</label>
+          </div>
+          <div class="usa-radio">
+            <input class="usa-radio__input" type="radio" id="block-custom" name="blockSize" value="custom" />
+            <label class="usa-radio__label" for="block-custom">Custom</label>
+          </div>
+        </div>
+        <span class="usa-error-message" id="blockSizeError" hidden>You must select quilt block size.</span>
 
-        <fieldset>
-          <legend>Finished Block Size</legend>
-          <label><input type="radio" name="blockSize" value="6" /> 6"</label><br />
-          <label><input type="radio" name="blockSize" value="8" /> 8"</label><br />
-          <label><input type="radio" name="blockSize" value="9" /> 9"</label><br />
-          <label><input type="radio" name="blockSize" value="10" /> 10"</label><br />
-          <label><input type="radio" name="blockSize" value="12" /> 12"</label><br />
-          <label><input type="radio" name="blockSize" value="custom" /> Custom</label>
-          <input type="number" id="customBlockSizeInput" min="1" max="100" placeholder="1-100" class="hidden" />
-          <label id="customBlockSizeLabel" for="customBlockSizeInput" class="hidden">Custom block size (inches)</label>
-          <div id="blockSizeError" class="error hidden">Please select a block size.</div>
-          <div id="customBlockSizeError" class="error hidden">Enter a custom size between 1 and 100.</div>
-        </fieldset>
+        <div id="custom-block-size-group" hidden>
+          <label for="customBlockSize">Custom block size (1-100 inch square)*</label>
+          <input
+            class="usa-input"
+            id="customBlockSize"
+            name="customBlockSize"
+            type="number"
+            min="1"
+            max="100"
+            maxlength="3"
+            style="width: 4em"
+          />
+          <span class="usa-error-message" id="customBlockSizeError" hidden>You must add a custom size between 1 and 100 inches (numbers only).</span>
+        </div>
 
-        <label for="sashingSelect">Sashing Width (inches):</label>
-        <select id="sashingSelect" name="sashing">
-          <option value="">--Select Sashing--</option>
-          <option value="None">None</option>
-          <option value="1">1"</option>
-          <option value="1.5">1.5"</option>
-          <option value="2">2"</option>
-        </select>
-        <div id="sashingError" class="error hidden">Please select sashing width.</div>
+        <div>
+          <label for="sashing">Sashing*</label>
+          <span class="usa-hint">Will there be fabric between each of the blocks? If so, how wide (in inches)?</span>
+          <select class="usa-select" id="sashing" name="sashing">
+            <option value="">None</option>
+            <option value="0.5">0.5”</option>
+            <option value="1">1”</option>
+            <option value="1.5">1.5”</option>
+            <option value="2">2”</option>
+            <option value="2.5">2.5”</option>
+            <option value="3">3”</option>
+            <option value="3.5">3.5”</option>
+            <option value="4">4”</option>
+            <option value="4.5">4.5”</option>
+            <option value="5">5”</option>
+          </select>
+          <span class="usa-error-message" id="sashingError" hidden>You must select none or a sashing size.</span>
+        </div>
 
-        <label for="borderSelect">Border Width (inches):</label>
-        <select id="borderSelect" name="border">
-          <option value="">--Select Border--</option>
-          <option value="None">None</option>
-          <option value="2">2"</option>
-          <option value="3">3"</option>
-          <option value="4">4"</option>
-        </select>
-        <div id="borderError" class="error hidden">Please select border width.</div>
+        <div>
+          <label for="border">Border*</label>
+          <span class="usa-hint">Will there be fabric around the quilt, framing the blocks? This is not the same as binding. If so, how wide (in inches)?</span>
+          <select class="usa-select" id="border" name="border">
+            <option value="">None</option>
+            <option value="0.5">0.5”</option>
+            <option value="1">1”</option>
+            <option value="1.5">1.5”</option>
+            <option value="2">2”</option>
+            <option value="2.5">2.5”</option>
+            <option value="3">3”</option>
+            <option value="3.5">3.5”</option>
+            <option value="4">4”</option>
+            <option value="4.5">4.5”</option>
+            <option value="5">5”</option>
+          </select>
+          <span class="usa-error-message" id="borderError" hidden>You must select none or a border size.</span>
+        </div>
 
-        <button type="button" id="backToSizeBtn">Back</button>
-        <button type="button" id="createPlanBtn">Create Plan</button>
+        <button type="button" class="usa-button usa-button--unstyled" id="backToSize">Back</button>
+        <button type="submit" class="usa-button" id="createQuiltPlan">Create quilt plan</button>
+      </fieldset>
+
+      <!-- Quilt Plan Output -->
+      <section id="quilt-plan" hidden>
+        <h2>Quilt plan</h2>
+        <p id="plan-summary"></p>
+        <p id="plan-details"></p>
+
+        <button type="button" class="usa-button usa-button--unstyled" id="editPlan">Edit</button>
+        <button type="button" class="usa-button" id="copyPlan">Copy quilt plan</button>
       </section>
-
-      <!-- Step 4: Result -->
-      <section class="step-section hidden" data-step="3">
-        <h2>Step 4: Quilt Plan</h2>
-        <pre id="planSummary" class="plan-summary"></pre>
-        <p id="sizesBeforeAssembly"></p>
-
-        <div id="quiltVisual" class="quilt-visual"></div>
-
-        <button type="button" id="editPlanBtn">Edit Plan</button>
-        <button type="button" id="copyPlanBtn">Copy Plan to Clipboard</button>
-      </section>
-
     </form>
-  </div>
+  </main>
 
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uswds@3.4.5/dist/js/uswds.min.js"></script>
 </body>
 </html>
+
 
 
 
