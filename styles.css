@@ -1,17 +1,48 @@
-body {
-  background-color: #ffffff;
+/* styles.css */
+
+/* Override thumbnail styling for radio labels */
+.thumbnail {
+  width: 100px;
+  height: 70px;
+  object-fit: contain;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.usa-step-indicator__segments {
-  overflow-x: auto;
-}
-
+/* Hide elements with class .hidden */
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+/* Margin overrides */
+.margin-top-3 {
+  margin-top: 1rem;
+}
+
+.margin-top-4 {
+  margin-top: 1.5rem;
+}
+
+/* Style the quilt visual placeholder */
+#quilt-visual {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-style: italic;
+  color: #666;
+}
+
+/* Adjust radio inline group spacing */
+.usa-radio--inline {
+  margin-right: 1.25rem;
+  margin-bottom: 0.5rem;
+  vertical-align: middle;
+}
+
+/* Error message style */
+.usa-error-message {
+  color: #b13228;
+  font-weight: 600;
+  margin-top: 0.25rem;
 }
