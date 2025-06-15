@@ -1,23 +1,17 @@
 body {
-  background-color: #f8f9fa;
-  padding: 1rem;
+  background-color: #ffffff;
 }
 
-.step {
-  margin-top: 2rem;
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.usa-radio--inline {
-  margin-right: 1rem;
+.usa-step-indicator__segments {
+  overflow-x: auto;
 }
 
-#quilt-plan {
-  margin-top: 2rem;
-  border-top: 1px solid #dcdcdc;
-  padding-top: 1rem;
-}
-
-button {
-  margin-top: 1rem;
-  margin-right: 0.5rem;
+.hidden {
+  display: none;
 }
