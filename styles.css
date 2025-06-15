@@ -80,3 +80,9 @@
   width: 100%;
   justify-content: center;
 }
+
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
