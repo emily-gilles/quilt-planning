@@ -46,3 +46,37 @@
   font-weight: 600;
   margin-top: 0.25rem;
 }
+
+/* Prevent overlap and ensure layout integrity */
+#quilt-plan {
+  position: relative;
+  display: block;
+  clear: both;
+  margin-top: 3rem;
+  padding: 1.5rem 1rem;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+}
+
+/* Quilt visual container */
+.quilt-visual {
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  padding: 1rem;
+  min-height: 200px;
+  max-width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Inner content can be flexible */
+#quilt-visual-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
