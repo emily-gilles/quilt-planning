@@ -2,51 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quilt block planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quilt Block Planner</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.0/dist/css/uswds.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="usa-prose usa-prose--indented usa-layout--margin-top" style="max-width:600px; margin: auto;">
+  <main class="usa-section usa-prose">
+    <div class="form-wrapper">
+      <h1>Quilt block planner</h1>
+      <p>Calculate how many blocks you need for a quilt with square blocks. Questions with an asterisk (*) are required.</p>
 
-    <h1>Quilt block planner</h1>
-    <p>Calculate how many blocks you need for a quilt with square blocks. Questions with an asterisk (*) are required.</p>
+      <!-- Step Indicator -->
+      <div class="usa-step-indicator usa-step-indicator--counters" aria-label="progress">
+        <ol class="usa-step-indicator__segments">
+          <li class="usa-step-indicator__segment usa-current" id="step-label-purpose">
+            <span class="usa-step-indicator__segment-label">Purpose</span>
+          </li>
+          <li class="usa-step-indicator__segment" id="step-label-size">
+            <span class="usa-step-indicator__segment-label">Size</span>
+          </li>
+          <li class="usa-step-indicator__segment" id="step-label-design">
+            <span class="usa-step-indicator__segment-label">Design</span>
+          </li>
+          <li class="usa-step-indicator__segment" id="step-label-plan">
+            <span class="usa-step-indicator__segment-label">Plan</span>
+          </li>
+        </ol>
+      </div>
 
-    <nav aria-label="Progress" class="usa-step-indicator">
-      <ol class="usa-step-indicator__segments">
-        <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
-          <a href="#" class="usa-step-indicator__segment-label">Purpose</a>
-        </li>
-        <li class="usa-step-indicator__segment">
-          <a href="#" class="usa-step-indicator__segment-label">Size</a>
-        </li>
-        <li class="usa-step-indicator__segment">
-          <a href="#" class="usa-step-indicator__segment-label">Design</a>
-        </li>
-      </ol>
-    </nav>
+      <form id="quilt-form">
+        <!-- Step 1: Purpose -->
+        <fieldset class="usa-fieldset step step-1">
+          <legend class="usa-legend">How will you use the quilt?*</legend>
+          <div class="usa-radio__inline">
+            <input class="usa-radio__input" id="bed-cover" type="radio" name="purpose" value="bed" required />
+            <label class="usa-radio__label" for="bed-cover">Bed cover</label>
 
-    <form id="quilt-form" novalidate>
-
-      <!-- Step 1: Purpose -->
-      <fieldset id="step-1" class="step" aria-label="Step 1: Purpose">
-        <legend>How will you use the quilt?*</legend>
-        <div class="usa-radio usa-radio--inline">
-          <input class="usa-radio__input" id="use-bed" type="radio" name="quiltUse" value="bed" required />
-          <label class="usa-radio__label" for="use-bed">
-            <img src="https://via.placeholder.com/80x60?text=Bed+Cover" alt="Bed cover" style="display:block; margin-bottom:4px;" />
-            Bed cover
-          </label>
-        </div>
-        <div class="usa-radio usa-radio--inline">
-          <input class="usa-radio__input" id="use-throw" type="radio" name="quiltUse" value="throw" />
-          <label class="usa-radio__label" for="use-throw">
-            <img src="https://via.placeholder.com/80x60?text=Throw+Blanket" alt="Throw blanket" style="display:block; margin-bottom:4px;" />
-            Throw blanket
-          </label>
-        </div>
-      </fieldset>
+            <input class="usa-radio__input" id="throw-blanket" type="radio" name="purpose" value="throw" required />
+            <label class="usa-radio__label" for="throw-blanket">Throw blanket</label>
+          </div>
+        </fieldset>
 
       <!-- Step 2: Size -->
       <fieldset id="step-2" class="step" aria-label="Step 2: Size" hidden>
@@ -260,12 +256,11 @@
         <button type="button" class="usa-button usa-button--unstyled" id="editPlan">Edit</button>
         <button type="button" class="usa-button" id="copyPlan">Copy quilt plan</button>
       </section>
-    </form>
+   </form>
+    </div>
   </main>
-
   <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uswds@3.7.0/dist/js/uswds.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.0/dist/js/uswds.min.js"></script>
 </body>
 </html>
 
