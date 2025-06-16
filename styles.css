@@ -20,7 +20,7 @@ p {
 form label {
   display: block;
   margin-top: 1rem;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 input, select {
