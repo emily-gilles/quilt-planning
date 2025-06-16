@@ -96,10 +96,15 @@ function generatePlan() {
 
   let output = `
   <h2>Your plan</h2>
-  <p><strong>Use:</strong> ${use}<br>
-  <strong>Block size:</strong> ${blockSize}"<br>
-  <strong>Sashing:</strong> ${sashing}"<br>
-  <strong>Border:</strong> ${border}"</p>
+ <p>
+  You’re making a 
+  ${use === "Throw for couch" ? `${throwSize} throw blanket` : `${bedWidth}" x ${bedLength}" ${use.toLowerCase()}`}
+  with ${blockSize}" square blocks, 
+  ${sashing}" sashing${border > 0 ? `, and a ${border}" border` : ""}.
+  ${use !== "Throw for couch" && overhang > 0 ? `You want it to overhang the bed by ${overhang}"` : ""}
+  Here’s what you need:
+</p>
+
 
   <h3><strong>Blocks</strong></h3>
   <p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>
