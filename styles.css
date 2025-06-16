@@ -140,6 +140,12 @@ button:hover {
   margin-top: 0.25rem;
 }
 
+.intro-hint {
+  display: block;
+  margin-bottom: 48px;
+}
+
+
 #output {
   background-color: #F5F2FF; 
   display: none; 
