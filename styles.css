@@ -47,7 +47,7 @@ button:hover {
   margin-top: 2rem;
   padding: 1rem;
   background-color: #EEE8FF;
-  border: 1px solid #531fff;
+  border-radius: 4px;
 }
 .field-row {
   display: flex;
