@@ -29,16 +29,28 @@
       </select>
 
       <label>How much will the quilt hang over the sides of the bed?</label>
-      <input type="number" id="overhang" value="0" min="0" /> inches
+      <div class="field-row">
+        <input type="number" id="overhang" value="0" min="0" />
+        <span class="unit">inches</span>
+      </div>
 
       <label>How big will each square quilt block be?</label>
-      <input type="number" id="block-size" value="9" min="1" /> inches
+      <div class="field-row">
+        <input type="number" id="block-size" value="9" min="1" />
+        <span class="unit">inches</span>
+      </div>
 
       <label>How wide will the sashing be between blocks?</label>
-      <input type="number" id="sashing" value="0" min="0" /> inches
+      <div class="field-row">
+        <input type="number" id="sashing" value="0" min="0" />
+        <span class="unit">inches</span>
+      </div>
 
       <label>How wide will the border be around the quilt?</label>
-      <input type="number" id="border" value="0" min="0" /> inches
+      <div class="field-row">
+        <input type="number" id="border" value="0" min="0" />
+        <span class="unit">inches</span>
+      </div>
 
       <button type="button" onclick="generatePlan()">Generate Plan</button>
     </form>
