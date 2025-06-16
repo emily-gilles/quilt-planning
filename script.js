@@ -36,7 +36,7 @@ function generatePlan() {
   if (use === "Throw for couch") {
     const tsInput = document.querySelector('input[name="throw-size"]:checked');
     throwSize = tsInput?.value;
-    const throwSizes = { small:[50,40], standard:[60,50], large:[70,60], oversized:[80,70] };
+    const throwSizes = { small: [50, 40], standard: [60, 50], large: [70, 60], oversized: [80, 70] };
 
     if (!throwSizes[throwSize]) {
       document.getElementById("output").innerHTML = "<p>Please select a throw blanket size.</p>";
@@ -51,18 +51,20 @@ function generatePlan() {
     }
     [bedWidth, bedLength] = bedSizeInput.value.split("x").map(Number);
 
-// Insert bedName mapping here
-const bedSizeMap = {
-  "38x75": "twin",
-  "54x75": "full",
-  "60x80": "queen",
-  "76x80": "king",
-  "72x84": "california king",
-};
-const bedKey = `${bedWidth}x${bedLength}`;
-const bedName = bedSizeMap[bedKey] || `${bedWidth} x ${bedLength}"`;
+    // Define bedName mapping here
+    const bedSizeMap = {
+      "28x52": "crib",
+      "38x75": "twin",
+      "38x80": "twin XL",
+      "54x75": "full",
+      "60x80": "queen",
+      "76x80": "king",
+      "72x84": "california king",
+    };
+    const bedKey = `${bedWidth}x${bedLength}`;
+    const bedName = bedSizeMap[bedKey] || `${bedWidth} x ${bedLength}"`;
 
-overhang = parseFloat(document.getElementById("overhang").value) || 0;
+    overhang = parseFloat(document.getElementById("overhang").value) || 0;
 
     totalWidth = bedWidth + overhang * 2;
     totalLength = bedLength + overhang * 2;
