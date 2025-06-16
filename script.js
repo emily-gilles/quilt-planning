@@ -255,37 +255,54 @@ if (use !== "Throw for couch") {
     
     out.innerHTML = html;
 
-document.getElementById("copy-plan-button").addEventListener("click", () => {
+ddocument.getElementById("copy-plan-button").addEventListener("click", () => {
   const out = document.getElementById("output");
-
-  // Clone the output div to avoid modifying what's visible
   const clone = out.cloneNode(true);
 
-  // Remove the "Copy plan" button
+  // Remove UI buttons
   const copyBtn = clone.querySelector("#copy-plan-button");
   if (copyBtn) copyBtn.remove();
-
-  // Remove the feedback button entirely
   const feedbackBtn = clone.querySelector("#feedback-button");
   if (feedbackBtn) feedbackBtn.remove();
 
-  // Replace <hr> elements with plain text dividers
+  // Replace <hr> with plain text divider
   clone.querySelectorAll("hr").forEach((hr) => {
-    const divider = document.createTextNode("\n\n---\n\n");
-    hr.replaceWith(divider);
+    hr.replaceWith(document.createTextNode("\n\n---\n\n"));
   });
 
-  // Copy plain text to clipboard
-  navigator.clipboard
-    .writeText(clone.textContent)
-    .then(() => {
-      alert("Plan copied to clipboard!");
-    })
-    .catch((err) => {
-      console.error("Copy failed:", err);
-      alert("Failed to copy plan. Try using a different browser.");
+  // Convert HTML to plain text with spacing preserved
+  function getTextWithLineBreaks(node) {
+    let text = "";
+
+    node.childNodes.forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        text += child.textContent;
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        if (child.tagName === "BR") {
+          text += "\n";
+        } else if (child.tagName === "P") {
+          text += getTextWithLineBreaks(child).trim() + "\n\n";
+        } else if (child.tagName === "H2") {
+          text += "\n" + getTextWithLineBreaks(child).trim().toUpperCase() + "\n\n";
+        } else {
+          text += getTextWithLineBreaks(child);
+        }
+      }
     });
+
+    return text;
+  }
+
+  const plainText = getTextWithLineBreaks(clone).trim();
+
+  navigator.clipboard.writeText(plainText).then(() => {
+    alert("Plan copied to clipboard!");
+  }).catch((err) => {
+    console.error("Copy failed:", err);
+    alert("Failed to copy plan. Try using a different browser.");
+  });
 });
+
 
 // Still keep this if you want the feedback button on the live page to open the form
 document.getElementById("feedback-button").addEventListener("click", () => {
