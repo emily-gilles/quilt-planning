@@ -101,17 +101,24 @@ function generatePlan() {
     const cutSashing = sashing > 0 ? (sashing + 0.5).toFixed(1) : null;
     const cutBorder = border > 0 ? (border + 0.5).toFixed(1) : null;
 
-    // Yardage calculations
+    // Yardage + strips (42" wide fabric)
+    const WOF = 42;
+
+    // Sashing
     const sashingLenIn =
       sashing > 0 ? (blocksAcross - 1) * quiltLength + (blocksDown - 1) * quiltWidth : null;
-    const borderLenIn = border > 0 ? 2 * (topWidth + topLength) : null;
     const sashingLenYd = sashingLenIn != null ? (sashingLenIn / 36).toFixed(2) : null;
-    const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
+    const sashingStrips = sashingLenIn != null ? Math.ceil(sashingLenIn / WOF) : null;
 
-    // Binding (2 × W + 2 × L + 10")
+    // Border
+    const borderLenIn = border > 0 ? 2 * (topWidth + topLength) : null;
+    const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
+    const borderStrips = borderLenIn != null ? Math.ceil(borderLenIn / WOF) : null;
+
+    // Binding
     const bindingLenIn = 2 * (quiltWidth + quiltLength) + 10;
     const bindingLenYd = (bindingLenIn / 36).toFixed(2);
-    const stripCount = Math.ceil(bindingLenIn / 42);
+    const bindingStrips = Math.ceil(bindingLenIn / WOF);
 
     // Summary
     const summary = `You’re making a ${
@@ -128,23 +135,23 @@ function generatePlan() {
 
     // Output
     let html = `<h2>Your plan</h2><p>${summary}</p>`;
-    html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+    html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
     if (cutSashing) {
-      html += `<h3>Sashing</h3><p>Cut sashing to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
+      html += `<h3>Sashing</h3><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
         1
-      )}” (${sashingLenYd} yards)</p>`;
+      )}” (${sashingLenYd} yards)<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
     }
 
     if (cutBorder) {
-      html += `<h3>Border</h3><p>Cut border to ${cutBorder}" wide<br>Total length needed for all four sides: ${borderLenIn.toFixed(
+      html += `<h3>Border</h3><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
         1
-      )}” (${borderLenYd} yards)</p>`;
+      )}” (${borderLenYd} yards)<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
     }
 
-    html += `<h3>Binding</h3><p>Cut binding strips to 2.5" wide<br>Total length (2×width + 2×length + 10"): ${bindingLenIn.toFixed(
+    html += `<h3>Binding</h3><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
       1
-    )}” (${bindingLenYd} yards)<br>You'll need ${stripCount} strips from 42" wide fabric (WOF)</p>`;
+    )}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
 
     const out = document.getElementById("output");
     out.innerHTML = html;
@@ -155,4 +162,3 @@ function generatePlan() {
     document.getElementById("output").innerHTML = `<p>Error: ${e.message}</p>`;
   }
 }
-
