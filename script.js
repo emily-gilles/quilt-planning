@@ -134,7 +134,7 @@ function generatePlan() {
     } <h3>Finished quilt</h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
     // Output
-    let html = `<h2>Your plan</h2><p>${summary}</p>`;
+    let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
     html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
     if (cutSashing) {
