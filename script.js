@@ -107,14 +107,14 @@ function generatePlan() {
 const summary = `You’re making a ${
   use === "Throw for couch"
     ? `${throwSize} throw blanket`
-    : `cover for a ${bedName} (${bedWidth} x ${bedLength}") bed`
+    : `cover for a ${bedName} (${bedWidth}" x ${bedLength}") bed`
 } with ${blockSize}" square blocks${
   sashing > 0 ? `, ${sashing}" sashing` : ""
 }${border > 0 ? `, and a ${border}" border` : ""}.${
   use !== "Throw for couch" && overhang > 0
     ? ` You want it to overhang the bed by ${overhang}."`
     : ""
-} <br><br><strong>Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}."</strong><br>`;
+} <h3>Finished quilt</h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}."</p>`;
 
 
 // Output HTML
