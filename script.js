@@ -275,17 +275,14 @@ if (use !== "Throw for couch") {
     feedbackBtn.replaceWith(link);
   }
 
-  // Copy HTML to clipboard
-  const blob = new Blob([clone.innerHTML], { type: "text/html" });
-  const data = [new ClipboardItem({ "text/html": blob })];
-
-  navigator.clipboard.write(data).then(() => {
-    alert("Plan copied to clipboard!");
-  }).catch((err) => {
-    console.error("Copy failed:", err);
-    alert("Failed to copy plan. Try using a different browser.");
-  });
+ // Copy plain text to clipboard
+navigator.clipboard.writeText(clone.textContent).then(() => {
+  alert("Plan copied to clipboard!");
+}).catch((err) => {
+  console.error("Copy failed:", err);
+  alert("Failed to copy plan. Try using a different browser.");
 });
+
 
 
 document.getElementById("feedback-button").addEventListener("click", () => {
