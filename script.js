@@ -150,6 +150,29 @@ if (cutBorder) {
 
 html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
 
+// Backing Fabric Calculations
+function getBackingPlan(fabricWidth) {
+  let panels, totalLength;
+  if (fabricWidth >= quiltWidth) {
+    panels = 1;
+    totalLength = quiltLength;
+  } else {
+    panels = Math.ceil(quiltWidth / fabricWidth);
+    totalLength = panels * quiltLength;
+  }
+  return {
+    width: fabricWidth,
+    panels,
+    yards: (totalLength / 36).toFixed(2),
+  };
+}
+
+const standardBacking = getBackingPlan(42);
+const wideBacking = getBackingPlan(108);
+
+html += `<p><strong>Backing</strong><br>
+Using standard 42" fabric: piece ${standardBacking.panels} panels, buy ${standardBacking.yards} yards<br>
+Using extra wide 108" fabric: piece ${wideBacking.panels} panels, buy ${wideBacking.yards} yards</p>`;
 
     const out = document.getElementById("output");
 
