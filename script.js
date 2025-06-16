@@ -154,7 +154,7 @@ if (cutBorder) {
 
 html += `<p><strong>Binding</strong></p><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
   1
-)}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</
+)}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
 
 
     const out = document.getElementById("output");
