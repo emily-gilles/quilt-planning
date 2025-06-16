@@ -174,8 +174,30 @@ html += `<p><strong>Backing</strong><br>
 Standard 42" fabric: ${standardBacking.yards} yards cut in ${standardBacking.panels} panels<br>
 Extra wide 108" fabric: ${wideBacking.yards} yards cut in ${wideBacking.panels} panels</p>`;
 
+    // Batting Size Recommendation
+const battingSizes = [
+  { name: "Crib", width: 45, length: 60 },
+  { name: "Twin", width: 72, length: 90 },
+  { name: "Full", width: 81, length: 96 },
+  { name: "Queen", width: 90, length: 108 },
+  { name: "King", width: 120, length: 120 },
+  { name: "California King", width: 120, length: 122 },
+];
+
+// Find smallest size that fits
+const batting = battingSizes.find(b => b.width >= quiltWidth && b.length >= quiltLength);
+
+if (batting) {
+  html += `<p><strong>Batting</strong><br>
+  Recommended size: <strong>${batting.name}</strong> (${batting.width}" x ${batting.length}")</p>`;
+} else {
+  html += `<p><strong>Batting</strong><br>
+  Your quilt is larger than standard batting sizes. You’ll need to piece batting or buy extra-wide rolls.</p>`;
+}
+
     const out = document.getElementById("output");
 
+    
     html += `
   <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
     <button id="copy-plan-button" type="button" class="copy-button">
