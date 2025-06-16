@@ -136,23 +136,23 @@ function generatePlan() {
     // Output
     let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
 
-     html += `<h3>Finished quilt</h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
+     html += `<p><strong>Finished quilt</strong></p><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
     
-    html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+    html += `<p><strong>Blocks</p></strong><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
     if (cutSashing) {
-      html += `<h3>Sashing</h3><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
+      html += `<p><strong>Sashing</p></strong>><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
         1
       )}” (${sashingLenYd} yards)<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
     }
 
     if (cutBorder) {
-      html += `<h3>Border</h3><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
+      html += `<p><strong>Border</p></strong>><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
         1
       )}” (${borderLenYd} yards)<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
     }
 
-    html += `<h3>Binding</h3><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
+    html += `<p><strong>Binding</p></strong><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
       1
     )}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
 
