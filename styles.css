@@ -72,9 +72,9 @@ button:hover {
 }
 
 .radio-group label {
-  display: flex;
+  display: inline-flex;        /* Prevents full width */
   align-items: center;
   font-weight: normal;
   gap: 0.5rem;
+  width: auto;                 /* Explicitly unset full width */
 }
-
