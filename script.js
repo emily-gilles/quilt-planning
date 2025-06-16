@@ -111,4 +111,12 @@ function generatePlan() {
 
   if (cutBorder) {
     output += `
-      <li>Cut border width to $
+      <li>Cut border width to ${cutBorder}" wide</li>
+      <li>You will need ${borderLengthYards} yards of border</li>
+    `;
+  }
+
+  output += "</ul>";
+
+  document.getElementById("output").innerHTML = output;
+}
