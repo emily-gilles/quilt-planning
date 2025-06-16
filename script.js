@@ -78,6 +78,31 @@ function generatePlan() {
       totalLength = bedLength + overhang * 2;
     }
 
+    // Validate input sizes
+const maxInput = Math.min(totalWidth, totalLength);
+const blockSizeInput = parseFloat(document.getElementById("block-size").value) || 0;
+const sashingInput = parseFloat(document.getElementById("sashing").value) || 0;
+const borderInput = parseFloat(document.getElementById("border").value) || 0;
+const overhangInput = parseFloat(document.getElementById("overhang").value) || 0;
+
+let error = "";
+
+if (blockSizeInput > maxInput) {
+  error = `Block size (${blockSizeInput}") is too large for the quilt.`;
+} else if (sashingInput > maxInput / 2) {
+  error = `Sashing (${sashingInput}") is too wide for this quilt.`;
+} else if (borderInput > maxInput / 2) {
+  error = `Border (${borderInput}") is too wide for this quilt.`;
+} else if (use !== "Throw for couch" && overhangInput > Math.min(bedWidth, bedLength) / 2) {
+  error = `Overhang (${overhangInput}") is too large for the selected bed size.`;
+}
+
+if (error) {
+  document.getElementById("output").innerHTML = `<p style="color: #b50909;"><strong>Error:</strong> ${error}</p>`;
+  return;
+}
+
+
     // User Inputs
     const blockSize = parseFloat(document.getElementById("block-size").value) || 0;
     const sashing = parseFloat(document.getElementById("sashing").value) || 0;
@@ -195,6 +220,15 @@ if (batting) {
   Your quilt is larger than standard batting sizes. You’ll need to piece batting or buy extra-wide rolls.</p>`;
 }
 
+    // Set max attributes based on total quilt size
+document.getElementById("block-size").max = Math.min(totalWidth, totalLength);
+document.getElementById("sashing").max = Math.min(totalWidth, totalLength) / 2;
+document.getElementById("border").max = Math.min(totalWidth, totalLength) / 2;
+if (use !== "Throw for couch") {
+  document.getElementById("overhang").max = Math.min(bedWidth, bedLength) / 2;
+}
+
+    
     const out = document.getElementById("output");
 
     
