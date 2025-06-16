@@ -103,8 +103,8 @@ function generatePlan() {
     const sashingLenYd = sashingLenIn != null ? (sashingLenIn / 36).toFixed(2) : null;
     const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
 
-    // Summary
-   const summary = `You’re making a ${
+  // Summary
+const summary = `You’re making a ${
   use === "Throw for couch"
     ? `${throwSize} throw blanket`
     : `cover for a ${bedName} (${bedWidth} x ${bedLength}") bed`
@@ -114,17 +114,16 @@ function generatePlan() {
   use !== "Throw for couch" && overhang > 0
     ? ` You want it to overhang the bed by ${overhang}".`
     : ""
-} Here’s what you need:`;
+} Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}".
 
+Here’s what you need:`;
 
-    // Output HTML
-    let html = `<h2>Your plan</h2><p>${summary}</p>`;
-    html += `<h3><strong>Blocks</strong></h3><p>${
-      blocksAcross * blocksDown
-    } total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
-    html += `<h3><strong>Finished quilt</strong></h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(
-      1
-    )}"</p>`;
+// Output HTML
+let html = `<h2>Your plan</h2><p>${summary}</p>`;
+html += `<h3><strong>Blocks</strong></h3><p>${
+blocksAcross * blocksDown
+} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+
     if (cutSashing) {
       html += `<h3><strong>Sashing</strong></h3><p>Cut to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(
         1
