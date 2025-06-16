@@ -173,17 +173,17 @@ let html = `<h2>${planTitle}</h2><span class="hint">${summary}</span>`;
 
 html += `<p><strong>Finished quilt</strong><br>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
-html += `<p><strong>Blocks</strong><br>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+html += `<p><strong>Blocks</strong><br>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down).<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}".</p>`;
 
 if (cutSashing) {
-  html += `<p><strong>Sashing</strong><br>Cut sashing strips to ${cutSashing}" wide<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
+  html += `<p><strong>Sashing</strong><br>Cut sashing strips to ${cutSashing}" wide.<br>You’ll need ${sashingStrips} strips from 42" wide fabric.</p>`;
 }
 
 if (cutBorder) {
-  html += `<p><strong>Border</strong><br>Cut border strips to ${cutBorder}" wide<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
+  html += `<p><strong>Border</strong><br>Cut border strips to ${cutBorder}" wide.<br>You’ll need ${borderStrips} strips from 42" wide fabric.</p>`;
 }
 
-html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
+html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide.<br>You’ll need ${bindingStrips} strips from 42" wide fabric.</p>`;
 
 // Backing Fabric Calculations
 function getBackingPlan(fabricWidth) {
@@ -224,7 +224,7 @@ const batting = battingSizes.find(b => b.width >= quiltWidth && b.length >= quil
 
 if (batting) {
   html += `<p><strong>Batting</strong><br>
-  You'll need ${batting.name} size batting (${batting.width}" x ${batting.length}")</p>`;
+  You'll need ${batting.name} size batting (${batting.width}" x ${batting.length}").</p>`;
 } else {
   html += `<p><strong>Batting</strong><br>
   Your quilt is larger than standard batting sizes. You’ll need to piece batting or buy extra-wide rolls.</p>`;
