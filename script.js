@@ -265,18 +265,15 @@ document.getElementById("copy-plan-button").addEventListener("click", () => {
   const copyBtn = clone.querySelector("#copy-plan-button");
   if (copyBtn) copyBtn.remove();
 
-  // Replace feedback button with a styled link
+  // Remove the feedback button entirely
   const feedbackBtn = clone.querySelector("#feedback-button");
-  if (feedbackBtn) {
-    const link = document.createElement("a");
-    link.href =
-      "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview";
-    link.textContent = "Give feedback";
-    link.target = "_blank";
-    link.style.color = "#531fff";
-    link.style.textDecoration = "underline";
-    feedbackBtn.replaceWith(link);
-  }
+  if (feedbackBtn) feedbackBtn.remove();
+
+  // Replace <hr> elements with plain text dividers
+  clone.querySelectorAll("hr").forEach((hr) => {
+    const divider = document.createTextNode("\n\n---\n\n");
+    hr.replaceWith(divider);
+  });
 
   // Copy plain text to clipboard
   navigator.clipboard
@@ -290,13 +287,14 @@ document.getElementById("copy-plan-button").addEventListener("click", () => {
     });
 });
 
-// This should go right after the above block, not inside it!
+// Still keep this if you want the feedback button on the live page to open the form
 document.getElementById("feedback-button").addEventListener("click", () => {
   window.open(
     "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview",
     "_blank"
   );
 });
+
 
 
     out.style.display = "block";
