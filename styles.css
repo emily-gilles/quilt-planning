@@ -78,3 +78,9 @@ button:hover {
   gap: 0.5rem;
   width: auto;                 /* Explicitly unset full width */
 }
+
+.radio-group input[type="radio"] {
+  width: auto;
+  flex-shrink: 0;
+}
+
