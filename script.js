@@ -112,26 +112,24 @@ const summary = `You’re making a ${
   sashing > 0 ? `, ${sashing}" sashing` : ""
 }${border > 0 ? `, and a ${border}" border` : ""}.${
   use !== "Throw for couch" && overhang > 0
-    ? ` You want it to overhang the bed by ${overhang}".`
+    ? ` You want it to overhang the bed by ${overhang}."`
     : ""
-} <br><br><strong>Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}".</strong><br><br>
-
-Here’s what you need:`;
+} <br><br><strong>Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}."</strong><br><br>`;
 
 
 // Output HTML
 let html = `<h2>Your plan</h2><p>${summary}</p>`;
-html += `<h3><strong>Blocks</strong></h3><p>${
+html += `<h3>Blocks</h3><p>${
 blocksAcross * blocksDown
 } total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
     if (cutSashing) {
-      html += `<h3><strong>Sashing</strong></h3><p>Cut to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(
+      html += `<h3>Sashing</h3><p>Cut to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(
         1
       )}” (${sashingLenYd} yards)</p>`;
     }
     if (cutBorder) {
-      html += `<h3><strong>Border</strong></h3><p>Cut to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(
+      html += `<h3>Border</h3><p>Cut to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(
         1
       )}” (${borderLenYd} yards)</p>`;
     }
