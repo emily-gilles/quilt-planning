@@ -166,12 +166,38 @@ html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>Youâ€
     
     out.innerHTML = html;
 
-    document.getElementById("copy-plan-button").addEventListener("click", () => {
-  const tempText = out.innerText;
-  navigator.clipboard.writeText(tempText).then(() => {
+  document.getElementById("copy-plan-button").addEventListener("click", () => {
+  // Clone the output div to avoid modifying what's visible
+  const clone = out.cloneNode(true);
+
+  // Remove the "Copy plan" button
+  const copyBtn = clone.querySelector("#copy-plan-button");
+  if (copyBtn) copyBtn.remove();
+
+  // Replace feedback button with a styled link
+  const feedbackBtn = clone.querySelector("#feedback-button");
+  if (feedbackBtn) {
+    const link = document.createElement("a");
+    link.href = "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview";
+    link.textContent = "Give feedback";
+    link.target = "_blank";
+    link.style.color = "#531fff";
+    link.style.textDecoration = "underline";
+    feedbackBtn.replaceWith(link);
+  }
+
+  // Copy HTML to clipboard
+  const blob = new Blob([clone.innerHTML], { type: "text/html" });
+  const data = [new ClipboardItem({ "text/html": blob })];
+
+  navigator.clipboard.write(data).then(() => {
     alert("Plan copied to clipboard!");
+  }).catch((err) => {
+    console.error("Copy failed:", err);
+    alert("Failed to copy plan. Try using a different browser.");
   });
 });
+
 
 document.getElementById("feedback-button").addEventListener("click", () => {
   window.open("https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview", "_blank");
