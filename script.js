@@ -114,9 +114,10 @@ const summary = `You’re making a ${
   use !== "Throw for couch" && overhang > 0
     ? ` You want it to overhang the bed by ${overhang}".`
     : ""
-} Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}".
+} <br><strong>Your finished quilt will be ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}".</strong><br>
 
 Here’s what you need:`;
+
 
 // Output HTML
 let html = `<h2>Your plan</h2><p>${summary}</p>`;
