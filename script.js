@@ -171,8 +171,8 @@ const standardBacking = getBackingPlan(42);
 const wideBacking = getBackingPlan(108);
 
 html += `<p><strong>Backing</strong><br>
-Standard 42" fabric: ${standardBacking.yards} yards, ${standardBacking.panels} panel(s)<br>
-Extra wide 108" fabric: ${wideBacking.yards} yards, ${wideBacking.panels} panel(s) </p>`;
+Standard 42" fabric: ${standardBacking.yards} yards cut in ${standardBacking.panels} panels<br>
+Extra wide 108" fabric: ${wideBacking.yards} yards cut in ${wideBacking.panels} panels</p>`;
 
     const out = document.getElementById("output");
 
