@@ -1,34 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const quiltUse = document.getElementById("quilt-use");
+  const useRadios = document.querySelectorAll('input[name="use"]');
   const bedSizeGroup = document.getElementById("bed-size-group");
   const overhangGroup = document.getElementById("overhang-group");
   const throwSizeGroup = document.getElementById("throw-size-group");
 
-  quiltUse.addEventListener("change", function () {
-    const useValue = quiltUse.value;
+  useRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const useValue = document.querySelector('input[name="use"]:checked').value;
 
-    if (useValue === "throw") {
-      bedSizeGroup.style.display = "none";
-      overhangGroup.style.display = "none";
-      throwSizeGroup.style.display = "block";
-    } else {
-      bedSizeGroup.style.display = "block";
-      overhangGroup.style.display = "block";
-      throwSizeGroup.style.display = "none";
-    }
+      if (useValue === "Throw for couch") {
+        bedSizeGroup.style.display = "none";
+        overhangGroup.style.display = "none";
+        throwSizeGroup.style.display = "block";
+      } else {
+        bedSizeGroup.style.display = "block";
+        overhangGroup.style.display = "block";
+        throwSizeGroup.style.display = "none";
+      }
 
-    document.getElementById("output").innerHTML = ""; // Clear output when switching
+      document.getElementById("output").innerHTML = ""; // Clear output on change
+    });
   });
 
   document.getElementById("generate-button").addEventListener("click", generatePlan);
 });
 
 function generatePlan() {
-  const use = document.getElementById("quilt-use").value;
+  const use = document.querySelector('input[name="use"]:checked')?.value || "";
   let totalWidth = 0;
   let totalLength = 0;
 
-  if (use === "throw") {
+  if (use === "Throw for couch") {
     const throwSize = document.getElementById("throw-size").value;
     const throwSizes = {
       small: [50, 40],
@@ -81,6 +83,5 @@ function generatePlan() {
     </ul>
   `;
   document.getElementById("output").innerHTML = output;
-} 
-
+}
 
