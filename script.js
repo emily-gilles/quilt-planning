@@ -120,41 +120,42 @@ function generatePlan() {
     const bindingLenYd = (bindingLenIn / 36).toFixed(2);
     const bindingStrips = Math.ceil(bindingLenIn / WOF);
 
-    // Summary
-    const summary = `You’re making a ${
-      use === "Throw for couch"
-        ? `${throwSize} throw blanket`
-        : `cover for a ${bedName} (${bedWidth}" x ${bedLength}") bed`
-    } with ${blockSize}" square blocks${
-      sashing > 0 ? `, ${sashing}" sashing` : ""
-    }${border > 0 ? `, and a ${border}" border` : ""}.${
-      use !== "Throw for couch" && overhang > 0
-        ? ` You want it to overhang the bed by ${overhang}."`
-        : ""
-    } 
+   // Summary
+const summary = `You’re making a ${
+  use === "Throw for couch"
+    ? `${throwSize} throw blanket`
+    : `cover for a ${bedName} (${bedWidth}" x ${bedLength}") bed`
+} with ${blockSize}" square blocks${
+  sashing > 0 ? `, ${sashing}" sashing` : ""
+}${border > 0 ? `, and a ${border}" border` : ""}.${
+  use !== "Throw for couch" && overhang > 0
+    ? ` You want it to overhang the bed by ${overhang}."`
+    : ""
+}`;
 
-    // Output
-    let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
+// Output
+let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
 
-     html += `<p><strong>Finished quilt</strong></p><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
-    
-    html += `<p><strong>Blocks</p></strong><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+html += `<p><strong>Finished quilt</strong></p><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
-    if (cutSashing) {
-      html += `<p><strong>Sashing</p></strong>><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
-        1
-      )}” (${sashingLenYd} yards)<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
-    }
+html += `<p><strong>Blocks</strong></p><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
-    if (cutBorder) {
-      html += `<p><strong>Border</p></strong>><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
-        1
-      )}” (${borderLenYd} yards)<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
-    }
+if (cutSashing) {
+  html += `<p><strong>Sashing</strong></p><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
+    1
+  )}” (${sashingLenYd} yards)<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
+}
 
-    html += `<p><strong>Binding</p></strong><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
-      1
-    )}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
+if (cutBorder) {
+  html += `<p><strong>Border</strong></p><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
+    1
+  )}” (${borderLenYd} yards)<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
+}
+
+html += `<p><strong>Binding</strong></p><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
+  1
+)}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</
+
 
     const out = document.getElementById("output");
     out.innerHTML = html;
