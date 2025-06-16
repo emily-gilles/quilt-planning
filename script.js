@@ -119,4 +119,6 @@ function generatePlan() {
   output += "</ul>";
 
   document.getElementById("output").innerHTML = output;
+  document.getElementById("output").style.display = "block";
+
 }
