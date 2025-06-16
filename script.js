@@ -255,7 +255,9 @@ if (use !== "Throw for couch") {
     
     out.innerHTML = html;
 
-  document.getElementById("copy-plan-button").addEventListener("click", () => {
+document.getElementById("copy-plan-button").addEventListener("click", () => {
+  const out = document.getElementById("output");
+
   // Clone the output div to avoid modifying what's visible
   const clone = out.cloneNode(true);
 
@@ -267,7 +269,8 @@ if (use !== "Throw for couch") {
   const feedbackBtn = clone.querySelector("#feedback-button");
   if (feedbackBtn) {
     const link = document.createElement("a");
-    link.href = "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview";
+    link.href =
+      "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview";
     link.textContent = "Give feedback";
     link.target = "_blank";
     link.style.color = "#531fff";
@@ -275,19 +278,26 @@ if (use !== "Throw for couch") {
     feedbackBtn.replaceWith(link);
   }
 
- // Copy plain text to clipboard
-navigator.clipboard.writeText(clone.textContent).then(() => {
-  alert("Plan copied to clipboard!");
-}).catch((err) => {
-  console.error("Copy failed:", err);
-  alert("Failed to copy plan. Try using a different browser.");
+  // Copy plain text to clipboard
+  navigator.clipboard
+    .writeText(clone.textContent)
+    .then(() => {
+      alert("Plan copied to clipboard!");
+    })
+    .catch((err) => {
+      console.error("Copy failed:", err);
+      alert("Failed to copy plan. Try using a different browser.");
+    });
 });
 
-
-
+// This should go right after the above block, not inside it!
 document.getElementById("feedback-button").addEventListener("click", () => {
-  window.open("https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview", "_blank");
+  window.open(
+    "https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview",
+    "_blank"
+  );
 });
+
 
     out.style.display = "block";
     out.scrollIntoView({ behavior: "smooth" });
