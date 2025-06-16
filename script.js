@@ -163,7 +163,13 @@ const summary = `You’re making a ${
 }`;
 
 // Output
-let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
+const planTitle =
+  use === "Throw for couch"
+    ? `${throwSize.charAt(0).toUpperCase() + throwSize.slice(1)} throw blanket`
+    : `${bedName.charAt(0).toUpperCase() + bedName.slice(1)} bed cover`;
+
+let html = `<h2>${planTitle}</h2><span class="hint">${summary}</span>`;
+
 
 html += `<p><strong>Finished quilt</strong><br>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
