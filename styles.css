@@ -94,8 +94,15 @@ button:hover {
   margin-bottom: 48px;
 }
 
+.hint {
+  display: block;
+  font-weight: 400;
+  color: #6e6e6e; /* dark gray */
+  margin-top: 0.25rem;
+}
+
 #output {
-  background-color: #F9F8FF; 
+  background-color: #F5F2FF; 
   display: none; 
   padding: 1rem; 
   border-radius: 0.5rem; 
