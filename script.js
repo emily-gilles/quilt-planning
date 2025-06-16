@@ -73,16 +73,48 @@ function generatePlan() {
   const quiltWidth = (blocksAcross * finishedBlock) - sashing + border * 2;
   const quiltLength = (blocksDown * finishedBlock) - sashing + border * 2;
 
-  const output = `
+  // Calculate cut sizes (finished size + 0.5")
+  const cutBlockSize = (blockSize + 0.5).toFixed(1);
+  const cutSashing = sashing > 0 ? (sashing + 0.5).toFixed(1) : null;
+  const cutBorder = border > 0 ? (border + 0.5).toFixed(1) : null;
+
+  // Calculate total sashing length needed (assuming sashing strips between blocks horizontally and vertically)
+  // Horizontal sashing length = number of horizontal sashing strips * quilt length
+  // Vertical sashing length = number of vertical sashing strips * quilt width
+  // Number of sashing strips across = blocksAcross - 1
+  const sashingLength = sashing > 0
+    ? (((blocksAcross - 1) * quiltLength) + ((blocksDown - 1) * quiltWidth)).toFixed(1)
+    : null;
+
+  // Calculate total border length needed (assuming border goes around perimeter)
+  // Border length needed = 2 * (quilt width + quilt length)
+  const borderLength = border > 0
+    ? (2 * (quiltWidth + quiltLength)).toFixed(1)
+    : null;
+
+  let output = `
     <h2>Your plan</h2>
     <p>You will need ${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down).</p>
     <ul>
-      <li>Finished quilt: ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
-      <li>Finished blocks: ${blockSize}" x ${blockSize}"</li>
-      <li>Sashing: ${sashing}"</li>
-      <li>Border: ${border}"</li>
-    </ul>
+      <li>Finished quilt size: ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
+      <li>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</li>
   `;
+
+  if (cutSashing) {
+    output += `
+      <li>Cut sashing to ${cutSashing}" wide</li>
+      <li>You will need ${sashingLength}" of sashing</li>
+    `;
+  }
+
+  if (cutBorder) {
+    output += `
+      <li>Cut border width to ${cutBorder}" wide</li>
+      <li>You will need ${borderLength}" of border</li>
+    `;
+  }
+
+  output += "</ul>";
+
   document.getElementById("output").innerHTML = output;
 }
-
