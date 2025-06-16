@@ -171,8 +171,8 @@ const standardBacking = getBackingPlan(42);
 const wideBacking = getBackingPlan(108);
 
 html += `<p><strong>Backing</strong><br>
-Standard 42" fabric: ${standardBacking.yards} yards cut in ${standardBacking.panels} panels<br>
-Extra wide 108" fabric: ${wideBacking.yards} yards cut in ${wideBacking.panels} panels</p>`;
+You'll need ${standardBacking.yards} yards of 42" fabric. Cut in ${standardBacking.panels} panels.<br>
+Or ${wideBacking.yards} yards of extra wide fabric. Cut in ${wideBacking.panels} panels.</p>`;
 
     // Batting Size Recommendation
 const battingSizes = [
@@ -189,7 +189,7 @@ const batting = battingSizes.find(b => b.width >= quiltWidth && b.length >= quil
 
 if (batting) {
   html += `<p><strong>Batting</strong><br>
-  Recommended size: <strong>${batting.name}</strong> (${batting.width}" x ${batting.length}")</p>`;
+  You'll need ${batting.name} size batting (${batting.width}" x ${batting.length}")</p>`;
 } else {
   html += `<p><strong>Batting</strong><br>
   Your quilt is larger than standard batting sizes. You’ll need to piece batting or buy extra-wide rolls.</p>`;
