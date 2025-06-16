@@ -81,6 +81,6 @@ function generatePlan() {
     </ul>
   `;
   document.getElementById("output").innerHTML = output;
-}
+} 
 
 
