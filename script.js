@@ -104,15 +104,18 @@ function generatePlan() {
     const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
 
     // Summary
-    const summary = `You’re making a ${
-      use === "Throw for couch"
-        ? `${throwSize} throw blanket`
-        : `cover for a ${bedName} (${bedWidth} x ${bedLength}") bed`
-    } with ${blockSize}" square blocks, ${sashing}" sashing${
-      border > 0 ? `, and a ${border}" border` : ""
-    }.${
-      use !== "Throw for couch" && overhang > 0 ? ` You want it to overhang the bed by ${overhang}".` : ""
-    } Here’s what you need:`;
+   const summary = `You’re making a ${
+  use === "Throw for couch"
+    ? `${throwSize} throw blanket`
+    : `cover for a ${bedName} (${bedWidth} x ${bedLength}") bed`
+} with ${blockSize}" square blocks${
+  sashing > 0 ? `, ${sashing}" sashing` : ""
+}${border > 0 ? `, and a ${border}" border` : ""}.${
+  use !== "Throw for couch" && overhang > 0
+    ? ` You want it to overhang the bed by ${overhang}".`
+    : ""
+} Here’s what you need:`;
+
 
     // Output HTML
     let html = `<h2>Your plan</h2><p>${summary}</p>`;
