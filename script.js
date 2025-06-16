@@ -19,13 +19,13 @@ function generatePlan() {
   const quiltLength = (blocksDown * finishedBlock) - sashing + border * 2;
 
   const output = `
-    <h2>Your Plan</h2>
-    <p>You will need <strong>${blocksAcross * blocksDown}</strong> square quilt blocks (${blocksAcross} across by ${blocksDown} down).</p>
+    <h2>Your plan</h2>
+    <p>You will need <strong>${blocksAcross * blocksDown}</strong> square quilt blocks (${blocksAcross} x ${blocksDown}).</p>
     <ul>
-      <li><strong>Finished quilt size:</strong> ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
-      <li><strong>Finished square quilt block size:</strong> ${blockSize}"</li>
-      <li><strong>Sashing:</strong> ${sashing}"</li>
-      <li><strong>Border:</strong> ${border}"</li>
+      <li>Finished quilt: ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
+      <li>Finished blocks: ${blockSize}" x ${blockSize}"</li>
+      <li>Sashing: ${sashing}"</li>
+      <li>Border: ${border}"</li>
     </ul>
   `;
   document.getElementById("output").innerHTML = output;
