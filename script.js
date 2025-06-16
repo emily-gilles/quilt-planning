@@ -120,5 +120,8 @@ function generatePlan() {
 
   document.getElementById("output").innerHTML = output;
   document.getElementById("output").style.display = "block";
+  const outputEl = document.getElementById("output");
+  outputEl.style.display = "block";
+  outputEl.scrollIntoView({ behavior: "smooth" });
 
 }
