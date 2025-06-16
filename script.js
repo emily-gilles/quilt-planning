@@ -29,113 +29,77 @@ function generatePlan() {
   const use = document.querySelector('input[name="use"]:checked')?.value || "";
   let totalWidth = 0;
   let totalLength = 0;
+  let bedWidth = 0, bedLength = 0, overhang = 0;
+  let throwSize = "";
 
+  // Determine total size
   if (use === "Throw for couch") {
-    const throwSizeInput = document.querySelector('input[name="throw-size"]:checked');
-    const throwSize = throwSizeInput ? throwSizeInput.value : null;
-    const throwSizes = {
-      small: [50, 40],
-      standard: [60, 50],
-      large: [70, 60],
-      oversized: [80, 70],
-    };
+    const tsInput = document.querySelector('input[name="throw-size"]:checked');
+    throwSize = tsInput?.value;
+    const throwSizes = { small:[50,40], standard:[60,50], large:[70,60], oversized:[80,70] };
 
     if (!throwSizes[throwSize]) {
       document.getElementById("output").innerHTML = "<p>Please select a throw blanket size.</p>";
       return;
     }
-
     [totalWidth, totalLength] = throwSizes[throwSize];
   } else {
-    const bedSizeValue = document.querySelector('input[name="bed-size"]:checked');
-    if (!bedSizeValue) {
+    const bedSizeInput = document.querySelector('input[name="bed-size"]:checked');
+    if (!bedSizeInput) {
       document.getElementById("output").innerHTML = "<p>Please select a bed size.</p>";
       return;
     }
-
-    const bedSize = bedSizeValue.value.split("x");
-    const bedWidth = parseInt(bedSize[0]);
-    const bedLength = parseInt(bedSize[1]);
-    const overhang = parseFloat(document.getElementById("overhang").value) || 0;
-
+    [bedWidth, bedLength] = bedSizeInput.value.split("x").map(Number);
+    overhang = parseFloat(document.getElementById("overhang").value) || 0;
     totalWidth = bedWidth + overhang * 2;
     totalLength = bedLength + overhang * 2;
   }
 
+  // Inputs
   const blockSize = parseFloat(document.getElementById("block-size").value) || 0;
   const sashing = parseFloat(document.getElementById("sashing").value) || 0;
   const border = parseFloat(document.getElementById("border").value) || 0;
 
+  // Calculations
   const finishedBlock = blockSize + sashing;
   const blocksAcross = Math.round(totalWidth / finishedBlock);
   const blocksDown = Math.round(totalLength / finishedBlock);
+  const quiltWidth = blocksAcross * finishedBlock - sashing + border * 2;
+  const quiltLength = blocksDown * finishedBlock - sashing + border * 2;
 
-  const quiltWidth = (blocksAcross * finishedBlock) - sashing + border * 2;
-  const quiltLength = (blocksDown * finishedBlock) - sashing + border * 2;
-
+  // Cut sizes
   const cutBlockSize = (blockSize + 0.5).toFixed(1);
   const cutSashing = sashing > 0 ? (sashing + 0.5).toFixed(1) : null;
   const cutBorder = border > 0 ? (border + 0.5).toFixed(1) : null;
 
-  const sashingLengthInches = sashing > 0
-    ? ((blocksAcross - 1) * quiltLength) + ((blocksDown - 1) * quiltWidth)
-    : null;
+  const sashingLenIn = sashing > 0 ? (blocksAcross - 1) * quiltLength + (blocksDown - 1) * quiltWidth : null;
+  const borderLenIn = border > 0 ? 2 * (quiltWidth + quiltLength) : null;
+  const sashingLenYd = sashingLenIn != null ? (sashingLenIn / 36).toFixed(2) : null;
+  const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
 
-  const borderLengthInches = border > 0
-    ? 2 * (quiltWidth + quiltLength)
-    : null;
+  // Summary
+  const summary = `You’re making a ${
+    use === "Throw for couch"
+      ? `${throwSize} throw blanket`
+      : `${bedWidth}" x ${bedLength}" bed quilt`
+  } with ${blockSize}" square blocks, ${sashing}" sashing${border > 0 ? `, and a ${border}" border` : ""}.${
+    use !== "Throw for couch" && overhang > 0 ? ` You want it to overhang the bed by ${overhang}".` : ""
+  } Here’s what you need:`;
 
-  // Convert inches to yards and round to 2 decimals
-  const sashingLengthYards = sashingLengthInches !== null
-    ? (sashingLengthInches / 36).toFixed(2)
-    : null;
+  // Output HTML
+  let html = `<h2>Your plan</h2><p>${summary}</p>`;
+  html += `<h3><strong>Blocks</strong></h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+  html += `<h3><strong>Finished quilt</strong></h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
+  if (cutSashing) {
+    html += `<h3><strong>Sashing</strong></h3><p>Cut to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(1)}” (${sashingLenYd} yards)</p>`;
+  }
+  if (cutBorder) {
+    html += `<h3><strong>Border</strong></h3><p>Cut to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(1)}” (${borderLenYd} yards)</p>`;
+  }
 
-  const borderLengthYards = borderLengthInches !== null
-    ? (borderLengthInches / 36).toFixed(2)
-    : null;
-
-  let output = `
-  <h2>Your plan</h2>
- <p>
-  You’re making a 
-  ${use === "Throw for couch" ? `${throwSize} throw blanket` : `${bedWidth}" x ${bedLength}" ${use.toLowerCase()}`}
-  with ${blockSize}" square blocks, 
-  ${sashing}" sashing${border > 0 ? `, and a ${border}" border` : ""}.
-  ${use !== "Throw for couch" && overhang > 0 ? `You want it to overhang the bed by ${overhang}"` : ""}
-  Here’s what you need:
-</p>
-
-
-  <h3><strong>Blocks</strong></h3>
-  <p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>
-  Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>
-
-  <h3><strong>Finished quilt</strong></h3>
-  <p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>
-`;
-
-if (cutSashing) {
-  output += `
-    <h3><strong>Sashing</strong></h3>
-    <p>Cut to ${cutSashing}" wide<br>
-    Length: ${sashingLengthInches.toFixed(1)}” (${sashingLengthYards} yards)</p>
-  `;
-}
-
-if (cutBorder) {
-  output += `
-    <h3><strong>Border</strong></h3>
-    <p>Cut to ${cutBorder}" wide<br>
-    Length: ${borderLengthInches.toFixed(1)}” (${borderLengthYards} yards)</p>
-  `;
-}
-
-document.getElementById("output").innerHTML = output;
-
-// Show and scroll to output
-const outputEl = document.getElementById("output");
-outputEl.style.display = "block";
-outputEl.scrollIntoView({ behavior: "smooth" });
-
-
+  // Inject and show
+  const out = document.getElementById("output");
+  out.innerHTML = html;
+  out.style.display = "block";
+  out.scrollIntoView({ behavior: "smooth" });
 }
