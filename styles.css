@@ -82,6 +82,9 @@ button:hover {
 .radio-group input[type="radio"] {
   width: auto;
   flex-shrink: 0;
+  vertical-align: middle;
+  margin-top: 0;
+  line-height: 1;
 }
 
 .form-group {
