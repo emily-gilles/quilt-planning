@@ -152,7 +152,31 @@ html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>Youâ€
 
 
     const out = document.getElementById("output");
+
+    html += `
+  <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+    <button id="copy-plan-button" type="button" class="copy-button">
+      <i class="fa-solid fa-copy" style="margin-right: 0.5em;"></i>Copy plan
+    </button>
+    <button id="feedback-button" type="button" class="outline-button">
+      Give feedback <i class="fa-solid fa-up-right-from-square" style="margin-left: 0.5em;"></i>
+    </button>
+  </div>`;
+
+    
     out.innerHTML = html;
+
+    document.getElementById("copy-plan-button").addEventListener("click", () => {
+  const tempText = out.innerText;
+  navigator.clipboard.writeText(tempText).then(() => {
+    alert("Plan copied to clipboard!");
+  });
+});
+
+document.getElementById("feedback-button").addEventListener("click", () => {
+  window.open("https://github.com/emily-gilles/quilt-planning/issues/new", "_blank");
+});
+
     out.style.display = "block";
     out.scrollIntoView({ behavior: "smooth" });
   } catch (e) {
