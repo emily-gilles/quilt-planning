@@ -12,6 +12,11 @@ h1 {
   margin-bottom: 48px;
 }
 
+h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
 .container {
   max-width: 600px;
   margin: auto;
