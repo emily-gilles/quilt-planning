@@ -50,7 +50,20 @@ function generatePlan() {
       return;
     }
     [bedWidth, bedLength] = bedSizeInput.value.split("x").map(Number);
-    overhang = parseFloat(document.getElementById("overhang").value) || 0;
+
+// Insert bedName mapping here
+const bedSizeMap = {
+  "38x75": "twin",
+  "54x75": "full",
+  "60x80": "queen",
+  "76x80": "king",
+  "72x84": "california king",
+};
+const bedKey = `${bedWidth}x${bedLength}`;
+const bedName = bedSizeMap[bedKey] || `${bedWidth} x ${bedLength}"`;
+
+overhang = parseFloat(document.getElementById("overhang").value) || 0;
+
     totalWidth = bedWidth + overhang * 2;
     totalLength = bedLength + overhang * 2;
   }
@@ -81,7 +94,7 @@ function generatePlan() {
   const summary = `You’re making a ${
     use === "Throw for couch"
       ? `${throwSize} throw blanket`
-      : `${bedWidth}" x ${bedLength}" bed quilt`
+      : `cover for a ${bedName} (${bedWidth} x ${bedLength}") bed`
   } with ${blockSize}" square blocks, ${sashing}" sashing${border > 0 ? `, and a ${border}" border` : ""}.${
     use !== "Throw for couch" && overhang > 0 ? ` You want it to overhang the bed by ${overhang}".` : ""
   } Here’s what you need:`;
