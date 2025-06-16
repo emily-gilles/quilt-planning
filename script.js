@@ -20,7 +20,7 @@ function generatePlan() {
 
   const output = `
     <h2>Your plan</h2>
-    <p>You will need <strong>${blocksAcross * blocksDown}</strong> square quilt blocks (${blocksAcross} x ${blocksDown}).</p>
+    <p>You will need ${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down).</p>
     <ul>
       <li>Finished quilt: ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
       <li>Finished blocks: ${blockSize}" x ${blockSize}"</li>
