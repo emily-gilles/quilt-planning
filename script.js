@@ -255,7 +255,7 @@ if (use !== "Throw for couch") {
     
     out.innerHTML = html;
 
-ddocument.getElementById("copy-plan-button").addEventListener("click", () => {
+document.getElementById("copy-plan-button").addEventListener("click", () => {
   const out = document.getElementById("output");
   const clone = out.cloneNode(true);
 
