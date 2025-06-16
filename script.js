@@ -31,7 +31,8 @@ function generatePlan() {
   let totalLength = 0;
 
   if (use === "Throw for couch") {
-    const throwSize = document.getElementById("throw-size").value;
+    const throwSizeInput = document.querySelector('input[name="throw-size"]:checked');
+    const throwSize = throwSizeInput ? throwSizeInput.value : null;
     const throwSizes = {
       small: [50, 40],
       standard: [60, 50],
