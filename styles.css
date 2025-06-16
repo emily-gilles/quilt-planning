@@ -147,5 +147,18 @@ button:hover {
   border-radius: 0.5rem; 
   margin-top: 2rem;
 }
+.attribution {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.attribution a {
+  color: #531fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
 
 
