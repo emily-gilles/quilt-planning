@@ -95,8 +95,11 @@ button:hover {
 }
 
 #output {
-  background-color: transparent;  /* or your original background */
-  display: none; /* hide it initially */
-  padding: 1rem; /* optional, your existing style */
-  border-radius: 0.5rem; /* optional */
+  background-color: #D9CDFF; 
+  display: none; 
+  padding: 1rem; 
+  border-radius: 0.5rem; 
+  margin-top: 2rem;
 }
+
+
