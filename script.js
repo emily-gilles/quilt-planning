@@ -34,9 +34,9 @@ function generatePlan() {
       bedLength = 0,
       overhang = 0;
     let throwSize = "";
-    let bedName = ""; // Declare here to have broader scope
+    let bedName = "";
 
-    // Determine total size
+    // Determine total quilt size
     if (use === "Throw for couch") {
       const tsInput = document.querySelector('input[name="throw-size"]:checked');
       throwSize = tsInput?.value;
@@ -61,7 +61,6 @@ function generatePlan() {
       }
       [bedWidth, bedLength] = bedSizeInput.value.split("x").map(Number);
 
-      // Define bedName mapping here
       const bedSizeMap = {
         "28x52": "crib",
         "38x75": "twin",
@@ -75,65 +74,78 @@ function generatePlan() {
       bedName = bedSizeMap[bedKey] || `${bedWidth} x ${bedLength}"`;
 
       overhang = parseFloat(document.getElementById("overhang").value) || 0;
-
       totalWidth = bedWidth + overhang * 2;
       totalLength = bedLength + overhang * 2;
     }
 
-    // Inputs
+    // User Inputs
     const blockSize = parseFloat(document.getElementById("block-size").value) || 0;
     const sashing = parseFloat(document.getElementById("sashing").value) || 0;
     const border = parseFloat(document.getElementById("border").value) || 0;
 
-    // Calculations
+    // Block layout
     const finishedBlock = blockSize + sashing;
     const blocksAcross = Math.round(totalWidth / finishedBlock);
     const blocksDown = Math.round(totalLength / finishedBlock);
-    const quiltWidth = blocksAcross * finishedBlock - sashing + border * 2;
-    const quiltLength = blocksDown * finishedBlock - sashing + border * 2;
 
-    // Cut sizes
+    // Quilt top size (before borders)
+    const topWidth = blocksAcross * finishedBlock - sashing;
+    const topLength = blocksDown * finishedBlock - sashing;
+
+    // Final quilt size (including borders)
+    const quiltWidth = topWidth + border * 2;
+    const quiltLength = topLength + border * 2;
+
+    // Cutting sizes
     const cutBlockSize = (blockSize + 0.5).toFixed(1);
     const cutSashing = sashing > 0 ? (sashing + 0.5).toFixed(1) : null;
     const cutBorder = border > 0 ? (border + 0.5).toFixed(1) : null;
 
+    // Yardage calculations
     const sashingLenIn =
       sashing > 0 ? (blocksAcross - 1) * quiltLength + (blocksDown - 1) * quiltWidth : null;
-    const borderLenIn = border > 0 ? 2 * (quiltWidth + quiltLength) : null;
+    const borderLenIn = border > 0 ? 2 * (topWidth + topLength) : null;
     const sashingLenYd = sashingLenIn != null ? (sashingLenIn / 36).toFixed(2) : null;
     const borderLenYd = borderLenIn != null ? (borderLenIn / 36).toFixed(2) : null;
 
-  // Summary
-const summary = `You’re making a ${
-  use === "Throw for couch"
-    ? `${throwSize} throw blanket`
-    : `cover for a ${bedName} (${bedWidth}" x ${bedLength}") bed`
-} with ${blockSize}" square blocks${
-  sashing > 0 ? `, ${sashing}" sashing` : ""
-}${border > 0 ? `, and a ${border}" border` : ""}.${
-  use !== "Throw for couch" && overhang > 0
-    ? ` You want it to overhang the bed by ${overhang}."`
-    : ""
-} <h3>Finished quilt</h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
+    // Binding (2 × W + 2 × L + 10")
+    const bindingLenIn = 2 * (quiltWidth + quiltLength) + 10;
+    const bindingLenYd = (bindingLenIn / 36).toFixed(2);
+    const stripCount = Math.ceil(bindingLenIn / 42);
 
+    // Summary
+    const summary = `You’re making a ${
+      use === "Throw for couch"
+        ? `${throwSize} throw blanket`
+        : `cover for a ${bedName} (${bedWidth}" x ${bedLength}") bed`
+    } with ${blockSize}" square blocks${
+      sashing > 0 ? `, ${sashing}" sashing` : ""
+    }${border > 0 ? `, and a ${border}" border` : ""}.${
+      use !== "Throw for couch" && overhang > 0
+        ? ` You want it to overhang the bed by ${overhang}."`
+        : ""
+    } <h3>Finished quilt</h3><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
-// Binding
-const bindingLenIn = quiltWidth + quiltLength * 2 + 10;
-const bindingLenYd = (bindingLenIn / 36).toFixed(2);
+    // Output
+    let html = `<h2>Your plan</h2><p>${summary}</p>`;
+    html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
-// Output HTML
-let html = `<h2>Your plan</h2><p>${summary}</p>`;
-html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
-if (cutSashing) {
-  html += `<h3>Sashing</h3><p>Cut sashing to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(1)}” (${sashingLenYd} yards)</p>`;
-}
-if (cutBorder) {
-  html += `<h3>Border</h3><p>Cut border to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(1)}” (${borderLenYd} yards)</p>`;
-}
-html += `<h3>Binding</h3><p>Cut binding to 2.5" wide<br>Length: ${bindingLenIn.toFixed(1)}” (${bindingLenYd} yards)</p>`;
+    if (cutSashing) {
+      html += `<h3>Sashing</h3><p>Cut sashing to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
+        1
+      )}” (${sashingLenYd} yards)</p>`;
+    }
 
+    if (cutBorder) {
+      html += `<h3>Border</h3><p>Cut border to ${cutBorder}" wide<br>Total length needed for all four sides: ${borderLenIn.toFixed(
+        1
+      )}” (${borderLenYd} yards)</p>`;
+    }
 
-    // Inject and show
+    html += `<h3>Binding</h3><p>Cut binding strips to 2.5" wide<br>Total length (2×width + 2×length + 10"): ${bindingLenIn.toFixed(
+      1
+    )}” (${bindingLenYd} yards)<br>You'll need ${stripCount} strips from 42" wide fabric (WOF)</p>`;
+
     const out = document.getElementById("output");
     out.innerHTML = html;
     out.style.display = "block";
@@ -143,3 +155,4 @@ html += `<h3>Binding</h3><p>Cut binding to 2.5" wide<br>Length: ${bindingLenIn.t
     document.getElementById("output").innerHTML = `<p>Error: ${e.message}</p>`;
   }
 }
+
