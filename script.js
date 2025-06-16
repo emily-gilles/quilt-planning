@@ -174,7 +174,7 @@ html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>Youâ€
 });
 
 document.getElementById("feedback-button").addEventListener("click", () => {
-  window.open("https://github.com/emily-gilles/quilt-planning/issues/new", "_blank");
+  window.open("https://docs.google.com/forms/d/e/1FAIpQLScRJtzvGLaC22oTmgbU4Us7MTRIaOFjNdx3cU4_3HRNKp1hUg/viewform?usp=preview", "_blank");
 });
 
     out.style.display = "block";
