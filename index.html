@@ -11,22 +11,23 @@
     <h1>Square Quilt Block Planner</h1>
 
     <form id="quilt-form">
-      <label>How will you use the quilt?</label>
-      <select id="use">
-        <option>Bed cover</option>
-        <option>Throw for couch</option>
-      </select>
-
+     <label>How will you use the quilt?</label>
+        <div class="radio-group" id="use">
+          <label><input type="radio" name="use" value="Bed cover" checked /> Bed cover</label>
+          <label><input type="radio" name="use" value="Throw for couch" /> Throw for couch</label>
+        </div>
+      
       <label>What size bed?</label>
-      <select id="bed-size">
-        <option value="28x52">Crib (28 x 52")</option>
-        <option value="38x75">Twin (38 x 75")</option>
-        <option value="38x80">Twin XL (38 x 80")</option>
-        <option value="54x75">Full (54 x 75")</option>
-        <option value="60x80">Queen (60 x 80")</option>
-        <option value="76x80">King (76 x 80")</option>
-        <option value="72x84">California King (72 x 84")</option>
-      </select>
+        <div class="radio-group" id="bed-size">
+          <label><input type="radio" name="bed-size" value="28x52" /> Crib (28 x 52")</label>
+          <label><input type="radio" name="bed-size" value="38x75" /> Twin (38 x 75")</label>
+          <label><input type="radio" name="bed-size" value="38x80" /> Twin XL (38 x 80")</label>
+          <label><input type="radio" name="bed-size" value="54x75" checked /> Full (54 x 75")</label>
+          <label><input type="radio" name="bed-size" value="60x80" /> Queen (60 x 80")</label>
+          <label><input type="radio" name="bed-size" value="76x80" /> King (76 x 80")</label>
+          <label><input type="radio" name="bed-size" value="72x84" /> California King (72 x 84")</label>
+        </div>
+
 
       <label>How much will the quilt hang over the sides of the bed?</label>
       <div class="field-row">
