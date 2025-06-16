@@ -98,9 +98,13 @@ if (blockSizeInput > maxInput) {
 }
 
 if (error) {
-  document.getElementById("output").innerHTML = `<p style="color: #b50909;"><strong>Error:</strong> ${error}</p>`;
+  const out = document.getElementById("output");
+  out.innerHTML = `<p style="color: #b50909; font-weight: bold;">Error: ${error}</p>`;
+  out.style.display = "block";
+  out.scrollIntoView({ behavior: "smooth" });
   return;
 }
+
 
 
     // User Inputs
