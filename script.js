@@ -1,5 +1,6 @@
 function generatePlan() {
-  const bedSize = document.getElementById("bed-size").value.split("x");
+  const bedSizeValue = document.querySelector('input[name="bed-size"]:checked').value;
+  const bedSize = bedSizeValue.split("x");
   const bedWidth = parseInt(bedSize[0]);
   const bedLength = parseInt(bedSize[1]);
   const overhang = parseFloat(document.getElementById("overhang").value);
