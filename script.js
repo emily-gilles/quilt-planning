@@ -125,10 +125,10 @@ const bindingLenYd = (bindingLenIn / 36).toFixed(2);
 let html = `<h2>Your plan</h2><p>${summary}</p>`;
 html += `<h3>Blocks</h3><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 if (cutSashing) {
-  html += `<h3>Sashing</h3><p>Cut to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(1)}” (${sashingLenYd} yards)</p>`;
+  html += `<h3>Sashing</h3><p>Cut sashing to ${cutSashing}" wide<br>Length: ${sashingLenIn.toFixed(1)}” (${sashingLenYd} yards)</p>`;
 }
 if (cutBorder) {
-  html += `<h3>Border</h3><p>Cut to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(1)}” (${borderLenYd} yards)</p>`;
+  html += `<h3>Border</h3><p>Cut border to ${cutBorder}" wide<br>Length: ${borderLenIn.toFixed(1)}” (${borderLenYd} yards)</p>`;
 }
 html += `<h3>Binding</h3><p>Cut binding to 2.5" wide<br>Length: ${bindingLenIn.toFixed(1)}” (${bindingLenYd} yards)</p>`;
 
