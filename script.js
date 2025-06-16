@@ -136,25 +136,19 @@ const summary = `You’re making a ${
 // Output
 let html = `<h2>Your plan</h2><span class="hint">${summary}</span>`;
 
-html += `<p><strong>Finished quilt</strong></p><p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
+html += `<p><strong>Finished quilt</strong><br>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>`;
 
-html += `<p><strong>Blocks</strong></p><p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
+html += `<p><strong>Blocks</strong><br>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</p>`;
 
 if (cutSashing) {
-  html += `<p><strong>Sashing</strong></p><p>Cut sashing strips to ${cutSashing}" wide<br>Total length: ${sashingLenIn.toFixed(
-    1
-  )}” (${sashingLenYd} yards)<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
+  html += `<p><strong>Sashing</strong><br>Cut sashing strips to ${cutSashing}" wide<br>You’ll need ${sashingStrips} strips from 42" wide fabric</p>`;
 }
 
 if (cutBorder) {
-  html += `<p><strong>Border</strong></p><p>Cut border strips to ${cutBorder}" wide<br>Total length: ${borderLenIn.toFixed(
-    1
-  )}” (${borderLenYd} yards)<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
+  html += `<p><strong>Border</strong><br>Cut border strips to ${cutBorder}" wide<br>You’ll need ${borderStrips} strips from 42" wide fabric</p>`;
 }
 
-html += `<p><strong>Binding</strong></p><p>Cut binding strips to 2.5" wide<br>Total length: ${bindingLenIn.toFixed(
-  1
-)}” (${bindingLenYd} yards)<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
+html += `<p><strong>Binding</strong><br>Cut binding strips to 2.5" wide<br>You’ll need ${bindingStrips} strips from 42" wide fabric</p>`;
 
 
     const out = document.getElementById("output");
