@@ -95,33 +95,42 @@ function generatePlan() {
     : null;
 
   let output = `
-    <h2>Your plan</h2>
-    <p>You will need ${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down).</p>
-    <ul>
-      <li>Finished quilt size: ${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</li>
-      <li>Cut blocks to ${cutBlockSize}" x ${cutBlockSize}"</li>
+  <h2>Your plan</h2>
+  <p><strong>Use:</strong> ${use}<br>
+  <strong>Block size:</strong> ${blockSize}"<br>
+  <strong>Sashing:</strong> ${sashing}"<br>
+  <strong>Border:</strong> ${border}"</p>
+
+  <h3><strong>Blocks</strong></h3>
+  <p>${blocksAcross * blocksDown} total blocks (${blocksAcross} across by ${blocksDown} down)<br>
+  Cut to ${cutBlockSize}" x ${cutBlockSize}"</p>
+
+  <h3><strong>Finished quilt</strong></h3>
+  <p>${quiltWidth.toFixed(1)}" x ${quiltLength.toFixed(1)}"</p>
+`;
+
+if (cutSashing) {
+  output += `
+    <h3><strong>Sashing</strong></h3>
+    <p>Cut to ${cutSashing}" wide<br>
+    Length: ${sashingLengthInches.toFixed(1)}” (${sashingLengthYards} yards)</p>
   `;
+}
 
-  if (cutSashing) {
-    output += `
-      <li>Cut sashing to ${cutSashing}" wide</li>
-      <li>You will need ${sashingLengthYards} yards of sashing</li>
-    `;
-  }
+if (cutBorder) {
+  output += `
+    <h3><strong>Border</strong></h3>
+    <p>Cut to ${cutBorder}" wide<br>
+    Length: ${borderLengthInches.toFixed(1)}” (${borderLengthYards} yards)</p>
+  `;
+}
 
-  if (cutBorder) {
-    output += `
-      <li>Cut border width to ${cutBorder}" wide</li>
-      <li>You will need ${borderLengthYards} yards of border</li>
-    `;
-  }
+document.getElementById("output").innerHTML = output;
 
-  output += "</ul>";
+// Show and scroll to output
+const outputEl = document.getElementById("output");
+outputEl.style.display = "block";
+outputEl.scrollIntoView({ behavior: "smooth" });
 
-  document.getElementById("output").innerHTML = output;
-  document.getElementById("output").style.display = "block";
-  const outputEl = document.getElementById("output");
-  outputEl.style.display = "block";
-  outputEl.scrollIntoView({ behavior: "smooth" });
 
 }
