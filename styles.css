@@ -15,7 +15,7 @@ body {
 
 form label {
   display: block;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-weight: 700;
 }
 
@@ -85,5 +85,5 @@ button:hover {
 }
 
 .form-group {
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 }
